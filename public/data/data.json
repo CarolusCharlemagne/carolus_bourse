@@ -1,0 +1,33 @@
+{
+  "entreprises": [
+    {
+      "nom": "LVMH",
+      "valeurs_boursieres": []
+    },
+    {
+      "nom": "Eiffage",
+      "valeurs_boursieres": []
+    },
+    {
+      "nom": "Vinci",
+      "valeurs_boursieres": []
+    },
+    {
+      "nom": "Airbus",
+      "valeurs_boursieres": []
+    },
+    {
+      "nom": "TotalEnergies",
+      "valeurs_boursieres": []
+    },
+    {
+      "nom": "Carrefour",
+      "valeurs_boursieres": []
+    },
+    {
+      "nom": "Thales",
+      "valeurs_boursieres": []
+    }
+  ]
+}
+

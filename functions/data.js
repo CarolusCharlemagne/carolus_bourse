@@ -38,7 +38,6 @@ const entreprises = [
 
 const selectElement = document.getElementById('entreprise-select');
 
-// Ajouter les options une seule fois ici.
 entreprises.forEach(entreprise => {
   const option = document.createElement('option');
   option.textContent = entreprise.nom;
@@ -63,36 +62,42 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   function generateChart() {
-      if (!entrepriseSelected) return;
+    if (!entrepriseSelected) return;
 
-      if (window.myChart) {
-          window.myChart.destroy();
-      }
+    if (window.myChart) {
+        window.myChart.destroy();
+    }
 
-      const labels = ['q1', 'q2', 'q3', 'q4']; 
-      const data = entrepriseSelected.valeurs_boursieres;
-      const maxValue = Math.max(...data);
-      const minValue = Math.min(...data);
+    const q1 = entrepriseSelected.valeurs_boursieres[0]; // Première valeur
+    const q4 = entrepriseSelected.valeurs_boursieres[entrepriseSelected.valeurs_boursieres.length - 1]; // Dernière valeur
+    const q2 = q1 + (q4 - q1) / 3; // Un tiers du chemin de q1 à q4
+    const q3 = q1 + 2 * (q4 - q1) / 3; // Deux tiers du chemin de q1 à q4
 
-      window.myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-              labels: labels,
-              datasets: [{
-                  label: 'Prix de l\'action (en euros)',
-                  data: data,
-                  borderColor: 'rgb(75, 192, 192)',
-                  fill: false
-              }]
-          },
-          options: {
-              scales: {
-                  y: {
-                      min: minValue - minValue * 0.20,
-                      max: maxValue + maxValue * 0.20 
-                  }
-              }
-          }
-      });
-  }
+    const labels = ['q1', 'q2', 'q3', 'q4'];
+    const data = [q1, q2, q3, q4];
+    const maxValue = Math.max(...data);
+    const minValue = Math.min(...data);
+
+    window.myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Prix de l\'action (en euros)',
+                data: data,
+                borderColor: 'rgb(75, 192, 192)',
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    min: minValue - minValue * 0.05,
+                    max: maxValue + maxValue * 0.05
+                }
+            }
+        }
+    });
+}
+
 });

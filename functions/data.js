@@ -2,42 +2,43 @@ const entreprises = [
   {
     "nom": "LVMH",
     "nombre_actions": 1, 
-    "valeurs_boursieres": [853.18, 839.80] // inclus les frais estimés
+    "valeurs_boursieres": [853.18, 839.60, 828.10, 833.10, 839.80] // inclus les frais estimés
   },
   {
     "nom": "Eiffage",
     "nombre_actions": 1,
-    "valeurs_boursieres": [100.7, 103.90]
+    "valeurs_boursieres": [100.7, 99.05, 101.05, 101.65, 103.90]
   },
   {
     "nom": "Vinci",
     "nombre_actions": 1,
-    "valeurs_boursieres": [118.24, 118.88]
+    "valeurs_boursieres": [118.24, 117.18, 117.64, 117.28, 118.88]
   },
   {
     "nom": "Airbus",
     "nombre_actions": 1,
-    "valeurs_boursieres": [153.41, 158.34]
+    "valeurs_boursieres": [153.41, 155.2, 157.58, 158.18, 158.34]
   },
   {
     "nom": "TotalEnergies",
     "nombre_actions": 10,
-    "valeurs_boursieres": [60.28, 59.92]
+    "valeurs_boursieres": [60.28, 59.40, 59.10, 59.98, 59.92]
   },
   {
     "nom": "Carrefour",
     "nombre_actions": 10,
-    "valeurs_boursieres": [15.48, 15.57]
+    "valeurs_boursieres": [15.48, 15.45, 15.74, 15.74, 15.57]
   },
   {
     "nom": "Thales",
     "nombre_actions": 5,
-    "valeurs_boursieres": [146.97, 145.90]
+    "valeurs_boursieres": [146.97, 137.80, 150.70, 147.05, 145.90]
   }
 ];
 
 const selectElement = document.getElementById('entreprise-select');
 
+// Ajouter les options une seule fois ici.
 entreprises.forEach(entreprise => {
   const option = document.createElement('option');
   option.textContent = entreprise.nom;
@@ -46,16 +47,8 @@ entreprises.forEach(entreprise => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  const selectElement = document.getElementById('entreprise-select');
   const canvas = document.getElementById('graphique');
   const ctx = canvas.getContext('2d');
-
-  entreprises.forEach(entreprise => {
-    const option = document.createElement('option');
-    option.textContent = entreprise.nom;
-    option.value = entreprise.nom;
-    selectElement.appendChild(option);
-  });
 
   let entrepriseSelected = entreprises[0]; 
   selectElement.value = entrepriseSelected.nom;
